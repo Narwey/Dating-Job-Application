@@ -21,7 +21,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(\App\Models\Job::class , 'job_listing_id')->constrained('job_listing')->cascadeOnDelete();
             $table -> foreignIdFor(\App\Models\Tag::class)->constrained()->cascadeOnDelete();
-            // this way it will try to create a foreignkey for a table named job but we do not have that we have Job_listing so we need to override it $column = 'name ,
+            // this way it will try to create a foreignKey for a table named job but we do not have that we have Job_listing so we need to override it $column = 'name ,
             $table->timestamps();
         });
     }
