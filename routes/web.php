@@ -30,7 +30,16 @@ Route::get('/contact', function () {
 
 Route::post('/jobs' , function(){
 
-    // input validation needed
+$request = new Illuminate\Http\Request();
+$request->replace([
+    'title' => request('title'),
+    'salary' => request('salary')
+]);
+
+$request->validate([
+    'title' => 'required|min:3',
+    'salary' => 'required'
+]);
 
     Job::create([
         'title'=> request('title') ,
@@ -43,5 +52,5 @@ Route::post('/jobs' , function(){
 
 Route::get('/job/{id}', function ($id) {
     $job = job::find($id);
-    return view('job.show',['job' => $job]);
+    return view('jobs.show',['job' => $job]);
 });
