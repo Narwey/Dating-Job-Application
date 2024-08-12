@@ -44,11 +44,46 @@ $request->validate([
     Job::create([
         'title'=> request('title') ,
         'salary' => request('salary'),
-        'employer_id'=> 1 // for employer id , it would be fetched from the authenticated employer later , after integrating the auth .
+        'employer_id'=> 3 // for employer id , it would be fetched from the authenticated employer later , after integrating the auth .
     ]);
 
     return redirect('/jobs');
 });
+
+Route::get('/job/{id}/edit', function ($id) {
+    $job = job::find($id);
+    return view('jobs.edit',['job' => $job]);
+});
+
+Route::patch('/job/{id}', function ($id) {
+    // steps : validation , Auth(check user id)
+    // $request = new Illuminate\Http\Request();
+    // $request->validate([
+    //     'title' => ['required','min:3'],
+    //     'salary' => ['required']
+    // ]);
+
+    // validation error to fix later
+
+    $job = Job::findOrFail($id);
+
+    $job->update([
+        'title'=>request('title'),
+        'salary'=>request('salary')
+    ]);
+
+    return redirect('job/' . $job->id);
+
+});
+
+Route::delete('/job/{id}', function ($id) {
+
+    // auth on hold until making breeze auth
+    Job::findOrFail($id)->delete();
+    return redirect('/jobs');
+
+});
+
 
 Route::get('/job/{id}', function ($id) {
     $job = job::find($id);
