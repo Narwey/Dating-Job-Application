@@ -8,7 +8,7 @@ class RegisterUserController extends Controller
     }
 
     public function store() {
-       dd('Hello');
-       // logic for registration
+       dd('endpoint reached ?');
+
     }
 }
