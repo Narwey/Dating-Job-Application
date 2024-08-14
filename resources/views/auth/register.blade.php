@@ -28,15 +28,15 @@
             <div class="sm:col-span-4">
                 <x-form-label for="salary">Password</x-form-label>
                     <div class="mt-2">
-                <x-form-input type='password' name="password" id="password" placeholder="#############" required></x-form-input>
+                <x-form-input type='password' name="password" id="password" placeholder="" required></x-form-input>
                 <x-form-error name="password"></x-form-error>
                     </div>
             </div>
             <div class="sm:col-span-4">
                 <x-form-label for="password">Confirm Password</x-form-label>
                     <div class="mt-2">
-                        <x-form-input type='password' name="confirm-password" id="confirm-password" required></x-form-input>
-                        <x-form-error name="confirm-password"></x-form-error>
+                        <x-form-input type='password' name="confirm_password" id="confirm_password" required></x-form-input>
+                        <x-form-error name="confirm_password"></x-form-error>
                     </div>
             </div>
 
