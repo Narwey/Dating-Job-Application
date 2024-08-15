@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'home');
 Route::view('/job/create', 'jobs.create');
 Route::get('/jobs', [JobController::class , 'index'] );
-Route::post('/jobs' ,[JobController::class , 'create']);
-Route::get('/job/{job}/edit', [JobController::class , 'edit']);
-Route::patch('/job/{job}',[JobController::class , 'update']);
-Route::delete('/job/{job}', [JobController::class , 'destroy']);
+Route::post('/jobs' ,[JobController::class , 'create'])->middleware('auth');
+Route::get('/job/{job}/edit', [JobController::class , 'edit'])->middleware('auth');
+Route::patch('/job/{job}',[JobController::class , 'update'])->middleware('auth');
+Route::delete('/job/{job}', [JobController::class , 'destroy'])->middleware('auth');
 Route::get('/job/{job}', [JobController::class , 'show']);
 
 
@@ -20,6 +20,6 @@ Route::get('/job/{job}', [JobController::class , 'show']);
 Route::get('/register' , [RegisterUserController::class , 'create']);
 Route::post('/register',[RegisterUserController::class , 'store']);
 
-Route::get('login',[LoginUserController::class , 'create']);
+Route::get('login',[LoginUserController::class , 'create'])->name('login');
 Route::post('login',[LoginUserController::class , 'store']);
 Route::post('logout',[LoginUserController::class , 'destroy']);
